@@ -1,13 +1,15 @@
 import axios from "axios";
 import { act, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useCountries from "./hooks/useCountries";
 
 function Create() {
     let countriesUrl = "https://restcountries.com/v3.1/all";
     let url = "http://localhost:3000/destinations";
     let nav = useNavigate();
 
-    const [countries, setCountries] = useState([]);
+    const countries = useCountries();
+
     const [place, setPlace] = useState("");
     const [country, setCountry] = useState("");
     const [travelType, setTravelType] = useState("");
@@ -22,28 +24,7 @@ function Create() {
     const [picError, setPicError] = useState("");
 
     useEffect(() => {
-        axios
-            .get(countriesUrl)
-            .then((res) => {
-                if(res.status === 200) {
-                    let c = res.data.map((obj) => {
-                        return {name:obj.name.common, code:obj.cca3}
-                    }).sort((a, b) => a.name.localeCompare(b.name));
-
-                    setCountries(c); 
-                }
-            })
-            .catch((err) => {
-                console.log("GET ERROR:", err);
-                setCountries([{name:"India", code:"IND"},
-                    {name:"Bangladesh", code:"BAN"},
-                    {name:"Australia", code:"AUS"},
-                    {name:"England", code:"ENG"},
-                    {name:"Pakisthan", code:"PAK"}
-                ]);
-            });
-
-        document.title = "Create | Dream Destinations";
+        document.title = "Create";
     }, []);
 
     const activitiesHandler = (e) => {

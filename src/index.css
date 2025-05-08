@@ -13,6 +13,10 @@ body {
     margin: 0;
     box-sizing: border-box;
 }
+.logo {
+    width:67px; 
+    height:67px;
+}
 .main_content {
     min-height: 82vh;
 }
@@ -53,6 +57,10 @@ fieldset {
     object-fit: cover;
     border-radius: 10px 0 0 10px;
 }
+.actionMobile {
+    display: none;
+}
+
 
 /*Media Queries*/
 @media only screen and (max-width: 768px) {
@@ -61,5 +69,15 @@ fieldset {
     }
     .single_dest .image img {
         border-radius: 10px 10px 0 0;
+    }
+    .logo {
+        width:55px; 
+        height:55px;
+    }
+    .actionMd {
+        display: none;
+    }
+    .actionMobile {
+        display: inline-block;
     }
 }

@@ -13,7 +13,7 @@ function Header() {
                 <div className="row">
                     <div className="col-md-12">
                         <Link to="/">
-                            <p className="d-inline-block m-0"><img src={logo} alt="Logo" style={{width:"67px", height:"67px"}} /></p>
+                            <p className="d-inline-block m-0"><img src={logo} className="logo" alt="Logo" /></p>
                             <h3 className='text-white d-inline-block m-0 ms-2 align-middle'>Dream Destinations</h3>
                         </Link>
                     </div>

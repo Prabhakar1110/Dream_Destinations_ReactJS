@@ -29,7 +29,7 @@ function List() {
             console.log("CATCH Error:", err);
         });
 
-        document.title = "Home | Dream Destinations";
+        document.title = "Home";
 
     }, []);
 
@@ -60,49 +60,60 @@ function List() {
                 <h3 className="headline d-inline-block">Destinations List</h3>
             </div>
 
-            <div className="text-end">
+            <div className="text-end mt-3">
                 <button type="button" className="btn btn-primary" style={{backgroundColor:"var(--header)"}}>
                     <Link to={`create`} style={{color:"white",textDecoration:"none"}}>+ Create</Link>
                 </button>
             </div>
+            <h4 className="m-0">Total: {destinations.length}</h4>
+            <div style={{height:"60vh", overflowY:"auto"}}>
+                <table  className="table table-striped table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Place</th>
+                            <th className="hide_it">Travel Type</th>
+                            <th className="hide_it">Description</th>
+                            <th className="hide_it">Picture</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {destinations.length > 0 ? (destinations.map((obj, index) => {
+                        return (<tr key={obj.id}>
+                            <td>{index+1}</td>
+                            <td>{obj.place}</td>
+                            <td className="hide_it">{obj.travel_type}</td>
+                            <td className="hide_it">{obj.description}</td>
+                            <td className="hide_it"><img src={obj.picture} alt="Pic" style={{width:"40px", height:"40px"}} /></td>
+                            <td className="actionMd">
+                                <Link to={`view/${obj.id}`} className="btn btn-info" style={{color:"white",textDecoration:"none"}}>View</Link>
+                                &nbsp;
+                                
+                                <Link className="btn btn-warning" to={`update/${obj.id}`} style={{color:"white",textDecoration:"none"}}>Update</Link>&nbsp;
 
-            <table className="table table-striped table-bordered mt-4">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Place</th>
-                        <th className="hide_it">Travel Type</th>
-                        <th className="hide_it">Description</th>
-                        <th>Picture</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {destinations.length > 0 ? (destinations.map((obj, index) => {
-                    return (<tr key={obj.id}>
-                        <td>{obj.id}</td>
-                        <td>{obj.place}</td>
-                        <td className="hide_it">{obj.travel_type}</td>
-                        <td className="hide_it">{obj.description}</td>
-                        <td><img src={obj.picture} alt="Pic" style={{width:"40px", height:"40px"}} /></td>
-                        <td>
-                            <Link to={`view/${obj.id}`} className="btn btn-info" style={{color:"white",textDecoration:"none"}}>View</Link>
-                            &nbsp;
-                            
-                            <Link className="btn btn-warning" to={`update`} style={{color:"white",textDecoration:"none"}}>Update</Link>&nbsp;
+                                <button type="button" className="btn btn-danger" onClick={()=>deleteHandler(obj.id)}>
+                                    Delete
+                                </button>
+                            </td>
+                            <td className="actionMobile">
+                                <Link to={`view/${obj.id}`} className="btn btn-info" style={{color:"white",textDecoration:"none"}}><i className="bi bi-eye"></i></Link>
+                                &nbsp;
+                                
+                                <Link className="btn btn-warning" to={`update/${obj.id}`} style={{color:"white",textDecoration:"none"}}><i className="bi bi-pencil"></i></Link>&nbsp;
 
-                            <button type="button" className="btn btn-danger" onClick={()=>deleteHandler(obj.id)}>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>)
-                    })):(<tr>
-                            <td colSpan="8" className="text-center text-muted">No data available</td>
-                        </tr>)}
-                    
-                </tbody>
-            </table>
-
+                                <button type="button" className="btn btn-danger" onClick={()=>deleteHandler(obj.id)}>
+                                    <i className="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>)
+                        })):(<tr>
+                                <td colSpan="8" className="text-center text-muted">No data available</td>
+                            </tr>)}
+                        
+                    </tbody>
+                </table>
+            </div>
         </div>
     </>);
 }
