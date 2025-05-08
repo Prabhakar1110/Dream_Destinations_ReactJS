@@ -1,0 +1,109 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import mysrc from "./img/favicon_32x32.png"
+import { Link } from "react-router-dom";
+
+function List() {
+    const [destinations, setDestinations] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [err, setErr] = useState('');
+
+    let url = "http://localhost:3000/destinations";
+
+    useEffect(() => {
+        axios
+        .get(url)
+        .then((res) => {
+            if(res.status === 200) {
+                setDestinations(res.data);
+            }
+            else {
+                setErr("Some Error");
+                console.log("Some Error"); 
+            }
+            setLoading(false);
+        })
+        .catch((err) => {
+            setErr('Server error');
+            setLoading(false);
+            console.log("CATCH Error:", err);
+        });
+
+        document.title = "Home | Dream Destinations";
+
+    }, []);
+
+    const deleteHandler = (id) => {
+        if(confirm("Are you sure to delete?")){
+            axios
+                .delete(url+"/"+id)
+                .then((res) => {
+                    alert("Deleted successfully");
+                    setDestinations(destinations.filter((obj)=>obj.id !== id));
+                })
+                .catch((err) => {
+                    console.log("DELETE CATCH ERROR:", err);
+                })
+        }
+    }
+
+    if(loading) {
+        return <p className="py-5 text-center">Loading...</p>
+    }
+    else if(err) {
+        return <p className="text-danger py-5 text-center">{err}</p>;
+    }
+
+    return (<>
+        <div className="container py-3">
+            <div className="list text-center">
+                <h3 className="headline d-inline-block">Destinations List</h3>
+            </div>
+
+            <div className="text-end">
+                <button type="button" className="btn btn-primary" style={{backgroundColor:"var(--header)"}}>
+                    <Link to={`create`} style={{color:"white",textDecoration:"none"}}>+ Create</Link>
+                </button>
+            </div>
+
+            <table className="table table-striped table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Place</th>
+                        <th className="hide_it">Travel Type</th>
+                        <th className="hide_it">Description</th>
+                        <th>Picture</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {destinations.length > 0 ? (destinations.map((obj, index) => {
+                    return (<tr key={obj.id}>
+                        <td>{obj.id}</td>
+                        <td>{obj.place}</td>
+                        <td className="hide_it">{obj.travel_type}</td>
+                        <td className="hide_it">{obj.description}</td>
+                        <td><img src={obj.picture} alt="Pic" style={{width:"40px", height:"40px"}} /></td>
+                        <td>
+                            <Link to={`view/${obj.id}`} className="btn btn-info" style={{color:"white",textDecoration:"none"}}>View</Link>
+                            &nbsp;
+                            
+                            <Link className="btn btn-warning" to={`update`} style={{color:"white",textDecoration:"none"}}>Update</Link>&nbsp;
+
+                            <button type="button" className="btn btn-danger" onClick={()=>deleteHandler(obj.id)}>
+                                Delete
+                            </button>
+                        </td>
+                    </tr>)
+                    })):(<tr>
+                            <td colSpan="8" className="text-center text-muted">No data available</td>
+                        </tr>)}
+                    
+                </tbody>
+            </table>
+
+        </div>
+    </>);
+}
+export default List;
