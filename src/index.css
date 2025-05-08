@@ -60,7 +60,18 @@ fieldset {
 .actionMobile {
     display: none;
 }
-
+.ellipsis {
+    white-space: nowrap; 
+    width: 130px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ellipsis_desc {
+    white-space: nowrap; 
+    width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /*Media Queries*/
 @media only screen and (max-width: 768px) {

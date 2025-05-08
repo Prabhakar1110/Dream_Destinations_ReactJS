@@ -82,9 +82,9 @@ function List() {
                         {destinations.length > 0 ? (destinations.map((obj, index) => {
                         return (<tr key={obj.id}>
                             <td>{index+1}</td>
-                            <td>{obj.place}</td>
+                            <td><span className="ellipsis d-inline-block">{obj.place}</span></td>
                             <td className="hide_it">{obj.travel_type}</td>
-                            <td className="hide_it">{obj.description}</td>
+                            <td className="hide_it"><span className="ellipsis_desc d-inline-block">{obj.description}</span></td>
                             <td className="hide_it"><img src={obj.picture} alt="Pic" style={{width:"40px", height:"40px"}} /></td>
                             <td className="actionMd">
                                 <Link to={`view/${obj.id}`} className="btn btn-info" style={{color:"white",textDecoration:"none"}}>View</Link>
