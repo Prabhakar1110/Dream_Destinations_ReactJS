@@ -78,6 +78,6 @@ fieldset {
         display: none;
     }
     .actionMobile {
-        display: inline-block;
+        display: block;
     }
 }
