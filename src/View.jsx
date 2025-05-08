@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 function View() {
-    let url = "http://localhost:3000/destinations";
+    let url = "https://dream-destinations-reactjs.onrender.com/destinations";
     let {view_id} = useParams();
 
     const [destination, setDestination] = useState([]);

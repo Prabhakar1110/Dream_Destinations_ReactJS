@@ -8,7 +8,7 @@ function List() {
     const [loading, setLoading] = useState(true);
     const [err, setErr] = useState('');
 
-    let url = "http://localhost:3000/destinations";
+    let url = "https://dream-destinations-reactjs.onrender.com/destinations";
 
     useEffect(() => {
         axios

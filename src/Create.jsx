@@ -5,7 +5,7 @@ import useCountries from "./hooks/useCountries";
 
 function Create() {
     let countriesUrl = "https://restcountries.com/v3.1/all";
-    let url = "http://localhost:3000/destinations";
+    let url = "https://dream-destinations-reactjs.onrender.com/destinations";
     let nav = useNavigate();
 
     const countries = useCountries();

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import useCountries from "./hooks/useCountries";
 import { useNavigate } from "react-router-dom";
 
-let apiUrl = "http://localhost:3000/destinations";
+let apiUrl = "https://dream-destinations-reactjs.onrender.com/destinations";
 
 function Update() {
     let {update_id} = useParams();
