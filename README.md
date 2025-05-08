@@ -1,4 +1,4 @@
-Any queries?, please reachout to me at, Email: prabasvu@gmail.com Phone: 6381965217
+Any queries?, please reachout to me at, Email: prabasvu@gmail.com Phone: 6381965217 
 
 # Dream Destinations - React CRUD App
 
